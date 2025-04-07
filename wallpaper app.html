@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallpaper Download</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2d2d2d;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo h1 {
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        header nav ul li {
+            margin: 0 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ff6347;
+        }
+
+        /* Search Bar */
+        #search {
+            background-color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            padding: 12px;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: #ff6347;
+        }
+
+        .search-bar button {
+            padding: 12px 18px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #d94e3f;
+        }
+
+        /* Category Filter */
+        #category-filter {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #category-filter h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .categories button {
+            margin: 10px;
+            padding: 12px 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .categories button:hover {
+            background-color: #444;
+        }
+
+        /* Wallpaper Grid */
+        #home {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .wallpaper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .wallpaper img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .wallpaper img:hover {
+            transform: scale(1.05);
+        }
+
+        .wallpaper button {
+            display: block;
+            margin: 15px auto;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .wallpaper button:hover {
+            background-color: #444;
+        }
+
+        /* About and Privacy Sections */
+        section {
+            padding: 40px 20px;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        footer {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .search-bar input {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Wallpaper Hub</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#search">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Search Section -->
+    <section id="search">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search wallpapers...">
+            <button onclick="searchWallpapers()">Search</button>
+        </div>
+    </section>
+
+    <!-- Category Filter Section -->
+    <section id="category-filter">
+        <h2>Filter by Category</h2>
+        <div class="categories">
+            <button onclick="filterCategory('nature')">Nature</button>
+            <button onclick="filterCategory('technology')">Technology</button>
+            <button onclick="filterCategory('animals')">Animals</button>
+            <button onclick="filterCategory('abstract')">Abstract</button>
+            <button onclick="filterCategory('space')">Space</button>
+        </div>
+    </section>
+
+    <!-- Wallpaper Grid Section -->
+    <section id="home">
+        <h2>Popular Wallpapers</h2>
+        <div class="wallpaper-grid" id="wallpaperGrid">
+            <!-- Dynamic Wallpaper Grid will be injected here by JS -->
+        </div>
+    </section>
+
+    <!-- About Us and Privacy Section -->
+    <section id="about">
+        <h2>About Us & Privacy Policy</h2>
+        <p>Wallpaper Hub is a place where you can find high-quality wallpapers for your device. Explore a wide variety of categories including nature, animals, technology, and more!</p>
+        <p>Your privacy is important to us. We do not share any personal information without your consent.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Wallpaper Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sample wallpaper data with your image paths
+        const wallpapers = [
+            { title: 'Nature 1', img: 'images/nature1.jpg', category: 'nature' },
+            { title: 'Nature 2', img: 'images/nature2.jpg', category: 'nature' },
+            { title: 'Nature 3', img: 'images/nature3.jpg', category: 'nature' },
+            { title: 'Nature 4', img: 'images/nature4.jpg', category: 'nature' },
+            { title: 'Nature 5', img: 'images/nature5.jpg', category: 'nature' },
+            { title: 'Nature 6', img: 'images/nature6.jpg', category: 'nature' },
+            { title: 'Technology 1', img: 'images/tech1.jpg', category: 'technology' },
+            { title: 'Technology 2', img: 'images/tech2.jpg', category: 'technology' },
+            { title: 'Technology 3', img: 'images/tech3.jpg', category: 'technology' },
+            { title: 'Technology 4', img: 'images/tech4.jpg', category: 'technology' },
+            { title: 'Technology 5', img: 'images/tech5.jpg', category: 'technology' },
+            { title: 'Technology 6', img: 'images/tech6.jpg', category: 'technology' },
+            { title: 'Animals 1', img: 'images2/animal1.jpg', category: 'animals' },
+            { title: 'Animals 2', img: 'images2/animal2.jpg', category: 'animals' },
+            { title: 'Animals 3', img: 'images2/animal3.jpg', category: 'animals' },
+            { title: 'Animals 4', img: 'images2/animal4.jpg', category: 'animals' },
+            { title: 'Animals 5', img: 'images2/animal5.jpg', category: 'animals' },
+            { title: 'Animals 6', img: 'images2/animal6.jpg', category: 'animals' },
+            { title: 'Abstract 1', img: 'images2/abstract1.jpg', category: 'abstract' },
+            { title: 'Abstract 2', img: 'images2/abstract2.jpg', category: 'abstract' },
+            { title: 'Abstract 3', img: 'images2/abstract3.jpg', category: 'abstract' },
+            { title: 'Abstract 4', img: 'images2/abstract4.jpg', category: 'abstract' },
+            { title: 'Abstract 5', img: 'images2/abstract5.jpg', category: 'abstract' },
+            { title: 'Abstract 6', img: 'images2/abstract6.jpg', category: 'abstract' },
+            { title: 'Space 1', img: 'images/space1.jpg', category: 'space' },
+            { title: 'Space 2', img: 'images/space2.jpg', category: 'space' },
+            { title: 'Space 3', img: 'images/space3.jpg', category: 'space' },
+            { title: 'Space 4', img: 'images/space4.jpg', category: 'space' },
+            { title: 'Space 5', img: 'images/space5.jpg', category: 'space' },
+            { title: 'Space 6', img: 'images/space6.jpg', category: 'space' },
+            
+        ];
+    
+        // Function to display wallpapers
+        function generateWallpaperGrid(filteredWallpapers) {
+            const grid = document.getElementById('wallpaperGrid');
+            grid.innerHTML = '';
+            filteredWallpapers.forEach(wallpaper => {
+                const wallpaperDiv = document.createElement('div');
+                wallpaperDiv.classList.add('wallpaper');
+                // wallpaperDiv.innerHTML = `
+                //     <img src="${wallpaper.img}" alt="${wallpaper.title}" loading="lazy">
+                //     <button onclick="downloadWallpaper('${wallpaper.img}', '1920x1080')">Download 1920x1080</button>
+                //     <button onclick="downloadWallpaper('${wallpaper.img}', '1024x768')">Download 1024x768</button>
+                //     <button onclick="downloadWallpaper('${wallpaper.img}', '800x600')">Download 800x600</button>
+                // `;
+                wallpaperDiv.innerHTML = `
+    <img src="${wallpaper.img}" alt="${wallpaper.title}" loading="lazy">
+    <button onclick="downloadWallpaper('${wallpaper.img}')">Download</button>
+`;
+                grid.appendChild(wallpaperDiv);
+            });
+        }
+
+    
+    //     function downloadWallpaper(imageUrl, size) {
+    //         const newImageUrl = imageUrl.replace(/(800x600|1024x768|1920x1080)/, size);
+    //         const downloadLink = document.createElement('a');
+    //         downloadLink.href = newImageUrl;
+    //         downloadLink.download = `wallpaper-${size}.jpg`;
+    //         downloadLink.click();
+    // }
+    
+
+    function downloadWallpaper(imageUrl) {
+    fetch(imageUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const blobUrl = URL.createObjectURL(blob);
+            const downloadLink = document.createElement('a');
+            downloadLink.href = blobUrl;
+            downloadLink.download = imageUrl.split('/').pop(); // Keep the original filename
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            URL.revokeObjectURL(blobUrl); // Free memory
+        })
+        .catch(error => console.error('Error downloading image:', error));
+}
+
+
+
+
+ 
+        // Search functionality
+        function searchWallpapers() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredWallpapers = wallpapers.filter(wallpaper => wallpaper.title.toLowerCase().includes(searchTerm));
+            generateWallpaperGrid(filteredWallpapers);
+        }
+    
+        function filterCategory(category) {
+            const filteredWallpapers = wallpapers.filter(wallpaper => wallpaper.category === category);
+            generateWallpaperGrid(filteredWallpapers);
+        }
+    
+        // Initialize with all wallpapers
+        generateWallpaperGrid(wallpapers);
+    </script>
+    
+</body>
+
+</html>
